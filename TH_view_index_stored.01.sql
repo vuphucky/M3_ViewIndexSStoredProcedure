@@ -165,3 +165,28 @@ from customers
 where contactFirstName = "Jean" or contactFirstName = "King";
 
 alter table customers drop index idx_full_name;
+
+select*from customers;
+
+delimiter //
+create procedure findAllCustomers()
+begin
+select* from customers;
+end //
+delimiter ;
+
+call findAllCustomers();
+
+
+
+delimiter //
+drop procedure if exists `findAllCustomers` //
+create procedure findAllCustomers()
+begin
+select*
+from customers 
+where customerNumber = 175;
+end //
+delimiter ;
+
+call findAllCustomers();
